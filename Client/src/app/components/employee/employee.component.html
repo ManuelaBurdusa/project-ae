@@ -1,0 +1,119 @@
+<app-menu></app-menu>
+
+<body>
+
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-5">
+          <h2>Employees
+            <b>Management</b>
+          </h2>
+        </div>
+        <div class="col-sm-7">
+          <a class="btn btn-primary" data-toggle="modal" data-target="#editEmployee">
+            <i class="material-icons">&#xE147;</i>
+            <span>Add Employee</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Nr.</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department Role</th>
+          <th>Current Project</th>
+          <th>Hired Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees; let i = index ">
+          <td>{{i+1}}</td>
+          <td>
+            {{emp.name}}
+          </td>
+          <td>{{emp.email}}</td>
+          <td>{{emp.department_role}}</td>
+          <td>{{emp.project}}</td>
+          <td>{{emp.createdAt | date: 'dd-MMM-yyyy'}}</td>
+          <td>
+            <a class="settings" title="Edit" data-toggle="tooltip" data-toggle="modal" data-target="#editEmployee"
+              (click)="editClick(emp)">
+              <i class="material-icons">&#xE8B8;</i>
+            </a>
+            <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteEmployee(emp)">
+              <i class="material-icons">&#xE5C9;</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="modal fade col-md-12" id="editEmployee" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 *ngIf="editable" class="modal-title">Edit Employee</h5>
+          <h5 *ngIf="!editable" class="modal-title">Add Employee</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-user-information">
+            <tbody>
+              <tr>
+                <td>
+                  <b>Name:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="employee.name">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Email:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="employee.email">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Department Role:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="employee.department_role">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Project:</b>
+                </td>
+                <td>
+                  <select (change)="onChangeProject($event)" [(ngModel)]="employee.project">
+                    <option *ngFor="let p of projectsArray">{{p.project_name}}</option>
+                  </select>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-footer">
+
+          <button class="btn btn-default edit" (click)="addEmployee()" data-dismiss="modal">
+            <span class="	fa fa-address-card-o"></span> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

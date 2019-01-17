@@ -1,0 +1,72 @@
+<app-menu></app-menu>
+
+<body>
+    <div class="container col-12">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-plus"></i> New Project</button>
+
+                    </div>
+                    <div class="col-sm-10">
+                        <h2 class="text-center">Projects
+                            <b>Management</b>
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nr.</th>
+                        <th>Project code</th>
+                        <th (click)="sort('name')">Project Name
+                            <i class="fa fa-sort"></i>
+                        </th>
+
+                        <th>Duration
+                            <i class="fa fa-sort"></i>
+                        </th>
+
+                        <th>Date Added
+                        </th>
+                        <th>
+                            <span class="fa fa-cog"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of projects | orderBy: key : reverse | filter:filter 
+                    | paginate: { itemsPerPage: 9, currentPage: p }; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{p.project_code}}</td>
+                        <td>{{p.project_name}}</td>
+
+                        <td>
+                            {{p.duration}}
+                        </td>
+                        <td>{{p.createdAt | date:'dd-MMM-yyyy'}}</td>
+                        <td>
+                            <a class="edit" title="Edit" data-toggle="tooltip" data-toggle="modal" data-target="#myModal"
+                                (click)="selectedId(p)">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteProject(p)">
+                                <i class="material-icons">&#xE872;</i>
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <app-add-edit-project [id_project]="id_project"></app-add-edit-project>
+
+</body>

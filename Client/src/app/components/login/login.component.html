@@ -1,0 +1,28 @@
+<body>
+
+  <div class="login-wrap">
+    <div class="login-html">
+      <img class="imageLogo" src="../../../assets/images/logo.png">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+      <div class="login-form" (keyup.enter)="login()">
+        <div class="sign-in-htm">
+          <div class="group">
+            <label for="user" class="label">Email:</label>
+            <input id="user" type="text" autocomplete="off" class="input" [(ngModel)]="user_email" [ngModelOptions]="{standalone: true}"
+              (change)="emptyErr()">
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Password:</label>
+            <input id="pass" type="password" autocomplete="off" class="input" data-type="password" [(ngModel)]="user_password"
+              [ngModelOptions]="{standalone: true}" (change)="emptyErr()">
+          </div>
+          <div *ngIf="error!= ''"><i>{{error}}</i></div>
+          <div class="group">
+            <input type="submit" class="button" value="Sign In" (click)="login()" (keyup.enter)="login()">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

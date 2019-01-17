@@ -1,0 +1,74 @@
+.col-md-12 {
+  padding:30px;
+  padding-top:58px;
+  overflow-y: scroll;
+  height: 100vh;
+}
+.content{
+  padding:20px;
+  font-family: sans-serif;
+  box-shadow: -2px 6px 14px 7px rgba(0, 0, 0, 0.2);
+}
+
+.users{
+  align-content: center;
+  text-align: center;
+  font-size:13px;
+  margin-top:5px;
+}
+.matTable {
+  width:100%;
+}
+.modal {
+  margin-top: 50px;
+ 
+}
+.modal-content {
+  display:flex;
+}
+h5 {
+  font-size:14px;
+}
+.edit{
+  color: black;;
+  border-radius: 5px;
+  font-weight: bold;
+  background:transparent;
+  border-color: rgb(41,5,160);
+ 
+  font-size: 14px;
+}
+.modal-header{
+  color: #ffffff;
+  background-color: rgb(41,5,160);
+  border-color: rgb(41,5,160);
+  font-size:14px;
+}
+input {
+  width: 100%;
+  font-size:13px;
+  padding:4px;
+  border-radius:2px;
+  border: 1px solid lightgray;
+}
+.table-user-information > tbody > tr,td {
+  border-top: 0;
+}
+
+.btn-info {
+  background-color: #3FBAE4;
+  color: #ffffff;
+  border-radius:20px;
+  border:transparent;
+  font-size:14px;
+}
+b {
+  font-size: 13px;
+}
+
+.btn-outline-info:hover, .btn-outline-danger:hover{
+  color: #ffffff;
+}
+.close, .close:hover {
+  color: white;
+}

@@ -1,0 +1,113 @@
+<app-menu></app-menu>
+
+<body>
+  <div class="col-md-12">
+    <div class="content">
+
+      <button mat-button class="btn btn-info" data-toggle="modal" data-target="#editUserModal" (click)="showAddModal()">
+        <span class="fa fa-plus"></span> New User</button>
+      <table mat-table matSort [dataSource]="dataSource" class="matTable">
+
+        <ng-container matColumnDef="user_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> User Name </th>
+          <td mat-cell *matCellDef="let user"> {{user.user_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="user_email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let user"> {{user.user_email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone_number">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+          <td mat-cell *matCellDef="let user"> {{user.phone_number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Department Role </th>
+          <td mat-cell *matCellDef="let user"> {{user.role}} </td>
+        </ng-container>
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> Edit </th>
+          <td mat-cell *matCellDef="let user">
+            <a class="btn btn-outline-info" data-toggle="modal" data-target="#editUserModal" (click)="showEditModal(user)">
+              <i class="fa fa-pencil"></i>
+            </a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Delete </th>
+          <td mat-cell *matCellDef="let user">
+            <a class="btn btn-outline-danger" (click)="deleteUser(user)">
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+    </div>
+  </div>
+  <div class="modal fade col-md-12" id="editUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 *ngIf="modalForEdit" class="modal-title">Edit User</h5>
+          <h5 *ngIf="!modalForEdit" class="modal-title">New User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-user-information">
+            <tbody>
+              <tr>
+                <td>
+                  <b>Name:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="selectedUser.user_name">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Email:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="selectedUser.user_email">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Phone Number:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="selectedUser.phone_number">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Department Role:</b>
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="selectedUser.role">
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <button *ngIf="modalForEdit" class="btn btn-default edit" (click)="updateUserInfo()" data-dismiss="modal">
+            <span class="	fa fa-address-card-o"></span>Save</button>
+          <button *ngIf="!modalForEdit" class="btn btn-default edit" (click)="addUser()" data-dismiss="modal">
+            <span class="	fa fa-address-card-o"></span> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

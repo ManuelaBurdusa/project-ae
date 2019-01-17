@@ -1,0 +1,30 @@
+
+   
+    .modal-content {
+        display:flex;
+    }
+    button{
+        color: #ffffff;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 2px solid  rgb(41,5,160);
+        background:rgb(41,5,160);
+        border-radius: 20px;
+     }
+    .modal-header{
+        color: #ffffff;
+        background-color: rgb(41,5,160);
+     
+    }
+ 
+
+    
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
